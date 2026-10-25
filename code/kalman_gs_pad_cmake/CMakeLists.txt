@@ -20,6 +20,8 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
 )
 
 target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC
+  parts/led
+  part_drivers/gpio
   # Add additional include directories here
 )
 

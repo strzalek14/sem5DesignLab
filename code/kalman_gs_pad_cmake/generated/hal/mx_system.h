@@ -37,8 +37,6 @@ extern "C" {
   */
 system_status_t mx_system_init(void);
 
-void SysTick_Handler(void);
-
 system_status_t pre_system_init_hook(void);
 
 system_status_t post_system_init_hook(void);

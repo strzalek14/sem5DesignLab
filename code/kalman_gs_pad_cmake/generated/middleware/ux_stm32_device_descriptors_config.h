@@ -43,8 +43,8 @@ extern "C" {
 #define USBD_VENDOR_ID                          1155
 #define USBD_PRODUCT_ID                         22288
 #define USBD_LANG_ID_STRING                     1033
-#define USBD_MANUFACTURER_STRING                "STMicroelectronics"
-#define USBD_PRODUCT_STRING                     "STM32 USBD Device"
+#define USBD_MANUFACTURER_STRING                "AGHSpaceSystems"
+#define USBD_PRODUCT_STRING                     "KALMAN_GS_PAD"
 #define USBD_SERIAL_NUMBER_STRING               "000000000001"
 #define USBD_MAX_POWER                          50
 #define USBD_FRAMEWORK_MAX_LENGTH               200U

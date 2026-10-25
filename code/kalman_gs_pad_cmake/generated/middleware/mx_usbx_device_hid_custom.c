@@ -23,27 +23,38 @@
 /* Private variables ---------------------------------------------------------*/
 UCHAR usbd_custom_hid_report_descriptor[] =
 {
-    0x06, 0x00, 0xFF,      /* Usage Page (Vendor Defined 0xFF00) */
-    0x09, 0x01,            /* Usage (Vendor Usage 1) */
-    0xA1, 0x01,            /* Collection (Application) */
-
-    // Input report (4 bytes)
-    0x09, 0x02,            /*   Usage (Vendor Usage 2) */
-    0x15, 0x00,            /*   Logical Minimum (0) */
-    0x26, 0xFF, 0x00,      /*   Logical Maximum (255) */
-    0x75, 0x08,            /*   Report Size (8 bits) */
-    0x95, 0x04,            /*   Report Count (4) */
-    0x81, 0x02,            /*   Input (Data, Variable, Absolute) */
-
-    // Output report (4 bytes)
-    0x09, 0x03,            /*   Usage (Vendor Usage 3) */
-    0x15, 0x00,            /*   Logical Minimum (0) */
-    0x26, 0xFF, 0x00,      /*   Logical Maximum (255) */
-    0x75, 0x08,            /*   Report Size (8 bits) */
-    0x95, 0x04,            /*   Report Count (4) */
-    0x91, 0x02,            /*   Output (Data, Variable, Absolute) */
-
-    0xC0                   /* End Collection */
+    0x05, 0x01,    // UsagePage(Generic Desktop[0x0001])
+    0x09, 0x05,    // UsageId(Gamepad[0x0005])
+    0xA1, 0x01,    // Collection(Application)
+    0x85, 0x01,    //     ReportId(1)
+    0x09, 0x01,    //     UsageId(Pointer[0x0001])
+    0xA1, 0x00,    //     Collection(Physical)
+    0x09, 0x30,    //         UsageId(X[0x0030])
+    0x09, 0x31,    //         UsageId(Y[0x0031])
+    0x09, 0x32,    //         UsageId(Z[0x0032])
+    0x15, 0x81,    //         LogicalMinimum(-127)
+    0x25, 0x7F,    //         LogicalMaximum(127)
+    0x95, 0x03,    //         ReportCount(3)
+    0x75, 0x08,    //         ReportSize(8)
+    0x81, 0x02,    //         Input(Data, Variable, Absolute, NoWrap, Linear, PreferredState, NoNullPosition, BitField)
+    0x09, 0x33,    //         UsageId(Rx[0x0033])
+    0x09, 0x34,    //         UsageId(Ry[0x0034])
+    0x09, 0x35,    //         UsageId(Rz[0x0035])
+    0x15, 0x00,    //         LogicalMinimum(0)
+    0x75, 0x07,    //         ReportSize(7)
+    0x81, 0x02,    //         Input(Data, Variable, Absolute, NoWrap, Linear, PreferredState, NoNullPosition, BitField)
+    0xC0,          //     EndCollection()
+    0x05, 0x09,    //     UsagePage(Button[0x0009])
+    0x19, 0x01,    //     UsageIdMin(Button 1[0x0001])
+    0x29, 0x05,    //     UsageIdMax(Button 5[0x0005])
+    0x25, 0x01,    //     LogicalMaximum(1)
+    0x95, 0x05,    //     ReportCount(5)
+    0x75, 0x01,    //     ReportSize(1)
+    0x81, 0x02,    //     Input(Data, Variable, Absolute, NoWrap, Linear, PreferredState, NoNullPosition, BitField)
+    0x95, 0x01,    //     ReportCount(1)
+    0x75, 0x06,    //     ReportSize(6)
+    0x81, 0x03,    //     Input(Constant, Variable, Absolute, NoWrap, Linear, PreferredState, NoNullPosition, BitField)
+    0xC0,          // EndCollection()
 };
 /* Private function prototypes -----------------------------------------------*/
 

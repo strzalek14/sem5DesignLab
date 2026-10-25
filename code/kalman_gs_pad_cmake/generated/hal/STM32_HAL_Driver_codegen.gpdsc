@@ -395,7 +395,7 @@
     <condition id="HAL CORE GPIO DMA Init and TIM">
       <description>STMicroelectronics HAL TIM Init dependencies</description>
       <require condition="HAL CORE GPIO DMA Init"/>
-      <require Cclass="Device" Cgroup="STM32 LL" Csub="TIM"/>
+      <require Cclass="Device" Cgroup="STM32 HAL" Csub="TIM"/>
     </condition>
     <condition id="HAL CORE GPIO DMA Init and LPTIM">
       <description>STMicroelectronics HAL LPTIM Init dependencies</description>
@@ -548,7 +548,7 @@
       <require condition="CMSIS Core"/>
       <require Cclass="Device" Cgroup="STM32 LL" Csub="UTILS"/>
       <require Cclass="Device" Cgroup="STM32CubeMX2 Codegen" Csub="Generated Code"/>
-      <require Cclass="Device" Cgroup="STM32 HAL" Csub="timebases" Cvariant="SYSTICK"/>
+      <require Cclass="Device" Cgroup="STM32 HAL" Csub="timebases" Cvariant="TIM"/>
     </condition>
     <condition id="Use mutex">
       <description>STMicroelectronics HAL condition to check if USE_HAL_MUTEX is enabled</description>
@@ -559,6 +559,7 @@
       <description>TO BE DEFINED</description>
       <files>
         <file category="header" name="mx_hal_def.h" />
+        <file category="header" name="stm32_hal_timebase.h" />
         <file category="header" name="stm32c5xx_hal_conf.h" />
       </files>
     </component>
@@ -574,6 +575,13 @@
       <files>
         <file category="source" name="mx_cortex_nvic.c" />
         <file category="header" name="mx_cortex_nvic.h" />
+      </files>
+    </component>
+    <component generator="stm32c5xx_hal_mx2codegen" Cclass="Device" Cgroup="STM32CubeMX2 Config" Csub="GPIO"   Cversion="2.1.0" condition="HAL GPIO Init">
+      <description>TO BE DEFINED</description>
+      <files>
+        <file category="source" name="mx_gpio_default.c" />
+        <file category="header" name="mx_gpio_default.h" />
       </files>
     </component>
     <component generator="stm32c5xx_hal_mx2codegen" Cclass="Device" Cgroup="STM32CubeMX2 Config" Csub="ICACHE"   Cversion="2.1.0" condition="HAL CORE Init and ICACHE">
@@ -608,6 +616,13 @@
         <file category="header" name="mx_def.h" />
         <file category="header" name="stm32_external_env.h" />
         <file category="other" name="mx_stm32c5xx_hal_drivers_license.md" />
+      </files>
+    </component>
+    <component generator="stm32c5xx_hal_mx2codegen" Cclass="Device" Cgroup="STM32CubeMX2 Config" Csub="TIM"   Cversion="2.1.0" condition="HAL CORE GPIO DMA Init and TIM">
+      <description>TO BE DEFINED</description>
+      <files>
+        <file category="source" name="mx_tim1.c" />
+        <file category="header" name="mx_tim1.h" />
       </files>
     </component>
   </components>

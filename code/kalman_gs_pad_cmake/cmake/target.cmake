@@ -1,5 +1,7 @@
 # file-format: 1.0.0
 if(${CMAKE_BUILD_TYPE} STREQUAL "debug_GCC_NUCLEO-C542RC")
+  set(CMSIS_Bname NUCLEO-C542RC)
+  set(CMSIS_Brevision NUC542RC$KR1)
   set(CMSIS_Dclock 144000000)
   set(CMSIS_Dcore Cortex-M33)
   set(CMSIS_DcoreVersion r0p4)

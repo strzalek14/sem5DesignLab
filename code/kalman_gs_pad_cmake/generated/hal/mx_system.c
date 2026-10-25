@@ -102,27 +102,23 @@ system_status_t mx_system_init(void)
     return SYSTEM_PERIPHERAL_ERROR;
   }
 
+  /** mx_tim1_init() has been generated,
+    * but TIM1 is used as timebase
+    * then it is initialized in stm32_hal_timebase_tim.c.
+    */
+
+  /** gpio_default */
+  if (mx_gpio_default_init() != SYSTEM_OK)
+  {
+    return SYSTEM_PERIPHERAL_ERROR;
+  }
+
   if (post_system_init_hook() != SYSTEM_OK)
   {
     return SYSTEM_POSTSYSTEM_ERROR;
   }
 
   return SYSTEM_OK;
-}
-
-/******************************************************************************/
-/*                            Systick Handler                                 */
-/******************************************************************************/
-/**
-  * @brief   This function handles SysTick Handler
-  * @warning Systick_Handler is generated as NVIC peripheral has not been activated
-  *          By default it is generated in HAL.
-  *          It must be located into mx_cortex_nvic.c file
-  */
-void SysTick_Handler(void)
-{
-  HAL_IncTick();
-  HAL_CORTEX_SYSTICK_IRQHandler();
 }
 
 /**

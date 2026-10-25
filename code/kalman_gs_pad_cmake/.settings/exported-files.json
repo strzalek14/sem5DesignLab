@@ -1,7 +1,7 @@
 {
   "disclaimer": "Do not modify this file as it is used by STM32CubeMX2 to determine what and how to update your project with new configuration",
   "version": "1.0.0",
-  "timestamp": "2026-10-24T21:31:12.586Z",
+  "timestamp": "2026-10-25T11:05:56.160Z",
   "files": [
     {
       "fileGroup": "project_file",
@@ -39,7 +39,7 @@
       "fileGroup": "generated",
       "checksum": {
         "algo": "sha256",
-        "digest": "e508980ad42ee7c47e01b7c12e43d77a20708d66f3bb3b428d779bad2e7f0a81"
+        "digest": "30c455068e5b6674de0e737836cbbceef3a08500a6c33a95ab3e920bbee19394"
       },
       "file": "cmake/components.cmake"
     },
@@ -55,7 +55,7 @@
       "fileGroup": "generated",
       "checksum": {
         "algo": "sha256",
-        "digest": "f90eec4494f1b0df1c539037682d4cf155c49ac5fa235dc567a9bf12a08e64d8"
+        "digest": "16e82e283a649e66a66184f5efb7de751ae6120eb2ff20c29d3576477f70471e"
       },
       "file": "cmake/flags.cmake"
     },
@@ -71,7 +71,7 @@
       "fileGroup": "generated",
       "checksum": {
         "algo": "sha256",
-        "digest": "b4be492f4e74cdf64f5815ff11e7b6cd44a65833577878207509e0f073bd5267"
+        "digest": "ba3e275812bcc661a077980bce75f378eca73b37847d7b4699eb64839938e5c2"
       },
       "file": "cmake/target.cmake"
     },
@@ -79,7 +79,7 @@
       "fileGroup": "project_file",
       "checksum": {
         "algo": "sha256",
-        "digest": "8edd503c731e0b2b457699d746ac15e516122a465625296e60702b394d2071b7"
+        "digest": "1c1a9bf9f9eb7a45d15c12a2d509ce2b61f35065289f6e3ce5990cc980c8261d"
       },
       "file": "stm32c5xx_dfp/CMakeLists.txt"
     },
@@ -103,7 +103,7 @@
       "fileGroup": "pack",
       "checksum": {
         "algo": "sha256",
-        "digest": "23a6cd6dec61f4feca7b05a8851aea7f6c0a3a530c6c872b95767ac8f0fc3901"
+        "digest": "253316e5a48335df29db61a884d2a49834d74784130e486bbb7bc0b5f3152dd1"
       },
       "file": "stm32c5xx_dfp/RTE_Components.h"
     },
@@ -231,7 +231,23 @@
       "fileGroup": "generated",
       "checksum": {
         "algo": "sha256",
-        "digest": "2a28720243de87e8329d68550513a4974e13dfcc03a9a374ddc40bf3e8bf6929"
+        "digest": "a0a4e14ebc96ba4b3ced47dadcb234a7c8f1ae31222a8e960c635a9c1546ddc1"
+      },
+      "file": "generated/hal/mx_gpio_default.c"
+    },
+    {
+      "fileGroup": "generated",
+      "checksum": {
+        "algo": "sha256",
+        "digest": "3537d92b080d2c9ce6d5f4f9c4fd462d199a1a5c0dabffed9ae3945ddea7ecf1"
+      },
+      "file": "generated/hal/mx_gpio_default.h"
+    },
+    {
+      "fileGroup": "generated",
+      "checksum": {
+        "algo": "sha256",
+        "digest": "55dd42d90c66ed879bf893a574c9c5a4abc26d44a2f0d931e1739460c16f5717"
       },
       "file": "generated/hal/mx_hal_def.h"
     },
@@ -279,7 +295,7 @@
       "fileGroup": "generated",
       "checksum": {
         "algo": "sha256",
-        "digest": "ab5d2d78f75ce97c78a1054355dc79a7bd76f5974fa8ec7a5b6b8e15f7d73602"
+        "digest": "750ebefb440ff924e3bc6d566446292b0d05a45d595e2efe062df9508dfc91b6"
       },
       "file": "generated/hal/mx_system.c"
     },
@@ -287,9 +303,25 @@
       "fileGroup": "generated",
       "checksum": {
         "algo": "sha256",
-        "digest": "f43ae2066645f0e4b27feea7b7a59cd416cf85887e7b66fb52b619801f2bcd70"
+        "digest": "55d83666843cdf7d1f892618a4c7d51549af42cbdd25fccd2e0e81ff987c8835"
       },
       "file": "generated/hal/mx_system.h"
+    },
+    {
+      "fileGroup": "generated",
+      "checksum": {
+        "algo": "sha256",
+        "digest": "3fea571dcc3921b2849b0741f6341a2f713639bc25458b06f2d25902556fc6ce"
+      },
+      "file": "generated/hal/mx_tim1.c"
+    },
+    {
+      "fileGroup": "generated",
+      "checksum": {
+        "algo": "sha256",
+        "digest": "c87420091131ae62bbdbaef895471f826c3657ec9d30cf16e5554f7a9af2b4f0"
+      },
+      "file": "generated/hal/mx_tim1.h"
     },
     {
       "fileGroup": "generated",
@@ -319,7 +351,7 @@
       "fileGroup": "generated",
       "checksum": {
         "algo": "sha256",
-        "digest": "711c7c88913e698fc67b1b62651741166f8d45731005e38163df36a6780ce555"
+        "digest": "671d7a5949b453d943878abcbe91bb51b4fd90b25d7b1ec5fdd5d8d49071f9a8"
       },
       "file": "generated/hal/stm32c5xx_hal_conf.h"
     },
@@ -335,7 +367,7 @@
       "fileGroup": "generated",
       "checksum": {
         "algo": "sha256",
-        "digest": "b8167b59ac51c1b7640ef426a764bc4330b932409d5bff18b76d23e9ccfc01e0"
+        "digest": "b962852ac445fec0f09090b4cb5d0cc4070cf033c150bf1c5bcb56ed001c72ae"
       },
       "file": "generated/hal/STM32_HAL_Driver_codegen.cmake"
     },
@@ -343,9 +375,17 @@
       "fileGroup": "generated",
       "checksum": {
         "algo": "sha256",
-        "digest": "190a14806a3f40bb064bbefc0115361a20a63c652622befc91cad0d98d5d422f"
+        "digest": "d41c1a268d4e63b8a9dcc61500dd05dda59a5abb0dd859ad807c2731d4b0590d"
       },
       "file": "generated/hal/STM32_HAL_Driver_codegen.gpdsc"
+    },
+    {
+      "fileGroup": "generated",
+      "checksum": {
+        "algo": "sha256",
+        "digest": "0f5204a0e70ac90bcb99e45160fd6f3b11dfa3b52303af6991846914cceacaaa"
+      },
+      "file": "generated/hal/stm32_hal_timebase.h"
     },
     {
       "fileGroup": "project_file",
@@ -522,6 +562,70 @@
         "digest": "fdcd0a8edba684958d5441bad7742cbc7cc0ab528a8e9ab9d5075b5e6c685883"
       },
       "file": "middleware/usbx/SW_Security_Level.md"
+    },
+    {
+      "fileGroup": "project_file",
+      "checksum": {
+        "algo": "sha256",
+        "digest": "c8db827b2ca5354416658965ff600e0e6ccd760cbb5c61561d923dbbb1922ebd"
+      },
+      "file": "misc/STMicroelectronics.button_hw-part.2.1.0/CMakeLists.txt"
+    },
+    {
+      "fileGroup": "project_file",
+      "checksum": {
+        "algo": "sha256",
+        "digest": "0b4348b9a2bd8485e52862a15d3dfa6f4e6254979d1a163746959f03bc24dc3e"
+      },
+      "file": "misc/STMicroelectronics.crystal_hw-part.2.2.0/CMakeLists.txt"
+    },
+    {
+      "fileGroup": "project_file",
+      "checksum": {
+        "algo": "sha256",
+        "digest": "d8e0bba1505f2adbc1d84d5b391f8fce0b90b14788928d89d31b6f61cb944c71"
+      },
+      "file": "misc/STMicroelectronics.esd_hw-part.2.2.0/CMakeLists.txt"
+    },
+    {
+      "fileGroup": "project_file",
+      "checksum": {
+        "algo": "sha256",
+        "digest": "74ade6fcba2c39872c2ac2f34f59fbce7c0211dc94c914a356e7b6064616c0dc"
+      },
+      "file": "misc/STMicroelectronics.led_hw-part.2.5.0/CMakeLists.txt"
+    },
+    {
+      "fileGroup": "project_file",
+      "checksum": {
+        "algo": "sha256",
+        "digest": "a5ec7e0ebb58a28dad5b988c7be3b15234609d6d6e2f98ff189a2924b1e5b9d6"
+      },
+      "file": "misc/STMicroelectronics.mcp2562fd_hw-part.2.1.0/CMakeLists.txt"
+    },
+    {
+      "fileGroup": "project_file",
+      "checksum": {
+        "algo": "sha256",
+        "digest": "4d8c1a94b3a77b1c7bfc175c62ddfe8e2e1a8bbb803974311186083ba63b4b6a"
+      },
+      "file": "misc/STMicroelectronics.nucleo-c542rc_hw-board.2.1.0/CMakeLists.txt"
+    },
+    {
+      "fileGroup": "pack",
+      "checksum": {
+        "algo": "sha256",
+        "digest": "b64a4fd92019fc3714673efc10d0b5b1c2daeb8171d1d723b7358e1698db22cf"
+      },
+      "file": "misc/STMicroelectronics.nucleo-c542rc_hw-board.2.1.0/LICENSE.txt"
+    },
+    {
+      "fileGroup": "project_file",
+      "checksum": {
+        "algo": "sha256",
+        "digest": "d6f399bc437a5f8cf7342bbbfa88a7ea4519da2bed189e415e141f404ee4f513"
+      },
+      "file": "misc/STMicroelectronics.st-link_hw-part.2.1.0/CMakeLists.txt"
     },
     {
       "fileGroup": "pack",

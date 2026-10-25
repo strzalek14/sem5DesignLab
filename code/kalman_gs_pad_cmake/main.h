@@ -1,11 +1,11 @@
 /**
   ******************************************************************************
   * file           : main.h
-  * brief          : Header for main.c file.
+  * brief          : Header for main.c.
   *                  This file contains the common defines of the application.
   ******************************************************************************
   *
-  * Copyright (c) 2025 STMicroelectronics.
+  * Copyright (c) 2026 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -19,8 +19,8 @@
 #define MAIN_H
 
 /* Includes ------------------------------------------------------------------*/
-#include "mx_hal_def.h"
-#include "mx_system.h"
+#include "example.h"
+#include "mx_system.h"  /* target-specific generated code providing system services */
 
 #ifdef __cplusplus
 extern "C" {
@@ -30,6 +30,7 @@ extern "C" {
 /* Exported constants --------------------------------------------------------*/
 /* Exported macros -----------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */
+void HardFault_Handler(void);
 
 #ifdef __cplusplus
 }

@@ -29,9 +29,11 @@ extern "C" {
 #include "stm32_hal.h"
 #include "mx_cortex_mpu.h"
 #include "mx_cortex_nvic.h"
+#include "mx_gpio_default.h"
 #include "mx_icache.h"
 #include "mx_usb_drd_fs.h"
 #include "mx_rcc.h"
+#include "mx_tim1.h"
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
@@ -53,6 +55,12 @@ extern "C" {
     ************************************************************* */
 
   /* *************************************************************
+    gpio_default: No software label has been defined for this peripheral instance
+      in the STM32CubeMX2 configuration panel.
+      As a result, no aliases are generated for mx_gpio_default_init
+    ************************************************************* */
+
+  /* *************************************************************
     ICACHE: No software label has been defined for this peripheral instance
       in the STM32CubeMX2 configuration panel.
       As a result, no aliases are generated for mx_icache_init
@@ -68,6 +76,12 @@ extern "C" {
     RCC: No software label has been defined for this peripheral instance
       in the STM32CubeMX2 configuration panel.
       As a result, no aliases are generated for mx_rcc_init
+    ************************************************************* */
+
+  /* *************************************************************
+    TIM1: No software label has been defined for this peripheral instance
+      in the STM32CubeMX2 configuration panel.
+      As a result, no aliases are generated for mx_tim1_init
     ************************************************************* */
 
 /* ########################################################### */
@@ -87,6 +101,12 @@ extern "C" {
     ************************************************************* */
 
   /* *************************************************************
+    gpio_default: No software label has been defined for this peripheral instance
+      in the STM32CubeMX2 configuration panel.
+      As a result, no aliases are generated for mx_gpio_default_deinit
+    ************************************************************* */
+
+  /* *************************************************************
     ICACHE: No software label has been defined for this peripheral instance
       in the STM32CubeMX2 configuration panel.
       As a result, no aliases are generated for mx_icache_deinit
@@ -96,6 +116,12 @@ extern "C" {
     USB_DRD_FS_DEVICE: No software label has been defined for this peripheral instance
       in the STM32CubeMX2 configuration panel.
       As a result, no aliases are generated for mx_usb_drd_fs_device_deinit
+    ************************************************************* */
+
+  /* *************************************************************
+    TIM1: No software label has been defined for this peripheral instance
+      in the STM32CubeMX2 configuration panel.
+      As a result, no aliases are generated for mx_tim1_deinit
     ************************************************************* */
 
 /* ########################################################### */
@@ -112,6 +138,12 @@ extern "C" {
     USB_DRD_FS_DEVICE: No software label has been defined for this peripheral instance
       in the STM32CubeMX2 configuration panel.
       As a result, no aliases are generated for mx_usb_drd_fs_device_gethandle
+    ************************************************************* */
+
+  /* *************************************************************
+    TIM1: No software label has been defined for this peripheral instance
+      in the STM32CubeMX2 configuration panel.
+      As a result, no aliases are generated for mx_tim1_gethandle
     ************************************************************* */
 
 /* ########################################################### */
