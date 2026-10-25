@@ -16,6 +16,7 @@ include(cmake/components.cmake)
 
 # Stubs to be able to add compiler flag overrides, e.g. -Os
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
+  gamepad.c
   # Add additional source files here
 )
 

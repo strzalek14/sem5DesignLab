@@ -22,6 +22,8 @@
 #include "mx_system.h"  /* target-specific generated code providing system services */
 #include "mx_usb_drd_fs.h"
 #include "mx_usbx_app.h"
+#include <string.h>
+#include "gamepad.h"
 
 #ifdef __cplusplus
 extern "C" {

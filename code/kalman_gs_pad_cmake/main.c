@@ -42,16 +42,20 @@ int main(void)
   g_usbx_status = app_usbx_init();
   if (g_usbx_status != UX_SUCCESS)                    { g_fail = 3; error_handler(); }
 
-  /* First call runs ux_dcd_stm32_initialize() (see app_usbx_device_process) */
-  app_usbx_process();
+  app_usbx_process();   /* first call runs ux_dcd_stm32_initialize() */
 
   if (HAL_PCD_GetState(pcd) != HAL_PCD_STATE_ACTIVE)  { g_fail = 4; error_handler(); }
-
   if (HAL_PCD_DeviceConnect(pcd) != HAL_OK)           { g_fail = 5; error_handler(); }
+
+  gamepad_report_t last_report = {0};
+  uint32_t next_tick = 0;
+  uint32_t step = 0;
 
   while (1)
   {
-    app_usbx_process();
+    app_usbx_process();                     /* must keep running, so no HAL_Delay in this loop */
+
+    
   }
 }
 
