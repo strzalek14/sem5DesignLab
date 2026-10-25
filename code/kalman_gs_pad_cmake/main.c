@@ -25,100 +25,49 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-app_status_t ExecStatus = EXEC_STATUS_UNKNOWN; /* application status */
-
 /* Private functions prototype -----------------------------------------------*/
-static void error_handler(void);
-static void success_handler(void);
 
-/** brief:  The application entry point.
-  * retval: none but we specify int to comply with C99 standard
-  */
+static void error_handler(void);
+
+volatile int  g_fail = 0;
+volatile UINT g_usbx_status = 0;
+
 int main(void)
 {
-  /** System Init: this generated code placed in targets folder initializes your system.
-    * It calls the initialization (and sets the initial configuration) of the peripherals.
-    * You can use STM32CubeMX to generate and call this code or not in this project.
-    * It also contains the HAL initialization and the initial clock configuration.
-    */
-  if (mx_system_init() != SYSTEM_OK)
-  {
-    ExecStatus = EXEC_STATUS_ERROR; /* memorize the error */
-  }
-  else
-  {
-    ExecStatus = app_init();
+  if (mx_system_init() != SYSTEM_OK)                  { g_fail = 1; error_handler(); }
 
-    while (ExecStatus != EXEC_STATUS_ERROR)
-    {
-      ExecStatus = app_process();
-    }
-    if (ExecStatus == EXEC_STATUS_OK)
-    {
-      ExecStatus = app_deinit();
-    }
-  }
+  hal_pcd_handle_t *pcd = mx_usb_drd_fs_device_init();
+  if (pcd == NULL)                                    { g_fail = 2; error_handler(); }
 
-  /* This point must not be reached */
-  if (ExecStatus == EXEC_STATUS_OK)
-  {
-    success_handler();
-  }
-  else
-  {
-    error_handler();
-  }
-} /* end main */
+  g_usbx_status = app_usbx_init();
+  if (g_usbx_status != UX_SUCCESS)                    { g_fail = 3; error_handler(); }
 
-/** The functions below are used to report the example status.
-  * ----------------------------------------------------------
-  */
+  /* First call runs ux_dcd_stm32_initialize() (see app_usbx_device_process) */
+  app_usbx_process();
 
-/** brief:  Error notification
-  * retval: None (infinite loop)
-  */
-static void error_handler(void)
-{
-  /* Initialize LED */
+  if (HAL_PCD_GetState(pcd) != HAL_PCD_STATE_ACTIVE)  { g_fail = 4; error_handler(); }
+
+  if (HAL_PCD_DeviceConnect(pcd) != HAL_OK)           { g_fail = 5; error_handler(); }
 
   while (1)
   {
-    /* Repeated flashing status LED (50ms on and 2sec off) when execution loop is exited */
+    app_usbx_process();
+  }
+}
+
+static void error_handler(void)
+{
+  while (1)
+  {
     HAL_GPIO_WritePin(HAL_GPIOA, HAL_GPIO_PIN_5, HAL_GPIO_PIN_SET);
     HAL_Delay(50);
     HAL_GPIO_WritePin(HAL_GPIOA, HAL_GPIO_PIN_5, HAL_GPIO_PIN_RESET);
     HAL_Delay(2000);
   }
-} /* end error_handler */
+}
 
-/** brief:  Success notification
-  * retval: None (infinite loop)
-  */
-static void success_handler(void)
-{
-  /* Initialize LED */
-  /* Report success: the LED remains turned on */
-  HAL_GPIO_WritePin(HAL_GPIOA, HAL_GPIO_PIN_5, HAL_GPIO_PIN_SET);
-
-  while (1);
-} /* end success_handler */
-
-/** Redefines the HardFault handler from the startup file.
-  * brief:  Hard Fault Handler
-  * retval: None (infinite loop)
-  *
-  * The default handler is redefined here so that:
-  * 1. The example status can be updated.
-  * 2. You can easily set a breakpoint to investigate the issue.
-  */
 void HardFault_Handler(void)
 {
-  /* The example encountered an unrecoverable error */
-  ExecStatus = EXEC_STATUS_ERROR;
-
-  /* Take a chance to turn the status LED off (this might fail) */
   HAL_GPIO_WritePin(HAL_GPIOA, HAL_GPIO_PIN_5, HAL_GPIO_PIN_RESET);
-
-  /* Unrecoverable error: infinite loop */
   while (1);
 }

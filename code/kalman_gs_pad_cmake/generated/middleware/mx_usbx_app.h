@@ -28,7 +28,7 @@ extern "C" {
 #include "stm32_hal.h"
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
-#define APP_DEFAULT_STACK_SIZE              512
+#define APP_DEFAULT_STACK_SIZE              (16*1024)
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions prototypes ---------------------------------------------*/
 UINT app_usbx_init(VOID);

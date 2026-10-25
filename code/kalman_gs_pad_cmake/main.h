@@ -19,8 +19,9 @@
 #define MAIN_H
 
 /* Includes ------------------------------------------------------------------*/
-#include "example.h"
 #include "mx_system.h"  /* target-specific generated code providing system services */
+#include "mx_usb_drd_fs.h"
+#include "mx_usbx_app.h"
 
 #ifdef __cplusplus
 extern "C" {
