@@ -6,9 +6,13 @@
 
 typedef struct __attribute__((packed))
 {
+  uint8_t report_id;
   int8_t   x, y, z;       /* -127..127 */
-  uint8_t  rx, ry, rz;    /* 0..100    */
-  uint16_t buttons;       /* bit 0 = button 1 ... bit 15 = button 16 */
+  uint32_t rx      : 7;    /* 0..127 */
+  uint32_t ry      : 7;    /* 0..127 */
+  uint32_t rz      : 7;    /* 0..127 */
+  uint32_t buttons : 5;    /* 5 przycisków (bity 0..4) */
+  uint32_t padding : 6;    /* padding wyrównujący do pełnego bajtu */
 } gamepad_report_t;
 
 _Static_assert(sizeof(gamepad_report_t) == 8, "must match the descriptor");
