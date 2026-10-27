@@ -21,6 +21,8 @@
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
+UX_SLAVE_CLASS_HID *g_hid_instance = UX_NULL;
+
 UCHAR usbd_custom_hid_report_descriptor[] =
 {
     0x05, 0x01,    // UsagePage(Generic Desktop[0x0001])
@@ -66,9 +68,8 @@ UCHAR usbd_custom_hid_report_descriptor[] =
   */
 VOID usbd_custom_hid_activate(VOID *hid_instance)
 {
-  UX_PARAMETER_NOT_USED(hid_instance);
-
-  return;
+  g_hid_instance = (UX_SLAVE_CLASS_HID *)hid_instance;
+  
 }
 
 /**
@@ -80,8 +81,8 @@ VOID usbd_custom_hid_activate(VOID *hid_instance)
 VOID usbd_custom_hid_deactivate(VOID *hid_instance)
 {
   UX_PARAMETER_NOT_USED(hid_instance);
+  g_hid_instance = UX_NULL;
 
-  return;
 }
 
 /**
