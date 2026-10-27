@@ -3673,8 +3673,8 @@ solution:
                         "usbd_framework_max_desc_sz": 200,
                         "usbd_vid": 1155,
                         "usbd_pid": 22288,
-                        "usbd_manufacturer_string": "STMicroelectronics",
-                        "usbd_product_string": "STM32 USBD Device",
+                        "usbd_manufacturer_string": "AGH Space Systems",
+                        "usbd_product_string": "KALMAN_GS_PAD",
                         "usbd_langid_string": "1033",
                         "usbd_serial_number": "000000000001",
                         "usbd_max_power": 50
