@@ -129,6 +129,12 @@ extern "C" {
 /* ########### Aliases to get HAL handle functions ########### */
 
   /* *************************************************************
+    gpio_default / EXTI10: No EXTI software label has been defined for this peripheral instance
+      in the STM32CubeMX2 configuration panel.
+      As a result, no aliases are generated for mx_gpio_default_exti10_gethandle
+    ************************************************************* */
+
+  /* *************************************************************
     ICACHE: No software label has been defined for this peripheral instance
       in the STM32CubeMX2 configuration panel.
       As a result, no aliases are generated for mx_icache_gethandle

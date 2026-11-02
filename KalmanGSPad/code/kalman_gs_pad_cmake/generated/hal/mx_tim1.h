@@ -29,6 +29,14 @@ extern "C" {
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 
+/** Primary aliases for TIM1_CH1 pin */
+#define INC_ENC_1_PORT                        HAL_GPIOA
+#define INC_ENC_1_PIN                         HAL_GPIO_PIN_8
+
+/** Primary aliases for TIM1_CH2 pin */
+#define INC_ENC_2_PORT                        HAL_GPIOA
+#define INC_ENC_2_PIN                         HAL_GPIO_PIN_9
+
 /* Exported macros -----------------------------------------------------------*/
 /* Exported variables --------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */

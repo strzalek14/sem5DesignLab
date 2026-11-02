@@ -39,7 +39,90 @@ hal_tim_handle_t *mx_tim1_init(void)
 
   HAL_RCC_TIM1_EnableClock();
 
-  /* No GPIO configuration required for TIM1 */
+  /* Timer configuration with external clock */
+  hal_tim_config_t config;
+  config.prescaler              = 0;
+  config.counter_mode           = HAL_TIM_COUNTER_UP;
+  config.period                 = 0xFFFF;
+  config.repetition_counter     = 0;
+  config.clock_sel.clock_source = HAL_TIM_CLK_ENCODER_DEBOUNCER_X4_TI12;
+  if (HAL_TIM_SetConfig(&hTIM1, &config) != HAL_OK)
+  {
+    return NULL;
+  }
+
+  /* Sampling Clock */
+  if (HAL_TIM_SetDTSPrescaler(&hTIM1, HAL_TIM_DTS_DIV1) != HAL_OK)
+  {
+    return NULL;
+  }
+  if (HAL_TIM_SetDTS2Prescaler(&hTIM1, HAL_TIM_DTS2_DIV1) != HAL_OK)
+  {
+    return NULL;
+  }
+
+  hal_tim_ic_channel_config_t ic_config;
+
+  ic_config.source    = HAL_TIM_INPUT_TIM1_TI1_GPIO;
+  ic_config.polarity  = HAL_TIM_IC_RISING;
+  ic_config.filter    = HAL_TIM_FDIV1;
+  if (HAL_TIM_IC_SetConfigChannel(&hTIM1, HAL_TIM_CHANNEL_1, &ic_config) != HAL_OK)
+  {
+    return NULL;
+  }
+
+  hal_tim_ic_capture_unit_config_t ic_capture_unit_config;
+
+  ic_capture_unit_config.source     = HAL_TIM_IC_DIRECT;
+  ic_capture_unit_config.prescaler  = HAL_TIM_IC_DIV1;
+  if (HAL_TIM_IC_SetConfigCaptureUnit(&hTIM1, HAL_TIM_IC_CAPTURE_UNIT_1, &ic_capture_unit_config) != HAL_OK)
+  {
+    return NULL;
+  }
+
+  ic_config.source    = HAL_TIM_INPUT_TIM1_TI2_GPIO;
+  ic_config.polarity  = HAL_TIM_IC_RISING;
+  ic_config.filter    = HAL_TIM_FDIV1;
+  if (HAL_TIM_IC_SetConfigChannel(&hTIM1, HAL_TIM_CHANNEL_2, &ic_config) != HAL_OK)
+  {
+    return NULL;
+  }
+
+  ic_capture_unit_config.source     = HAL_TIM_IC_DIRECT;
+  ic_capture_unit_config.prescaler  = HAL_TIM_IC_DIV1;
+  if (HAL_TIM_IC_SetConfigCaptureUnit(&hTIM1, HAL_TIM_IC_CAPTURE_UNIT_2, &ic_capture_unit_config) != HAL_OK)
+  {
+    return NULL;
+  }
+
+  /* Update Event Management */
+  if (HAL_TIM_SetUpdateSource(&hTIM1, HAL_TIM_UPDATE_REGULAR) != HAL_OK)
+  {
+    return NULL;
+  }
+  if (HAL_TIM_EnableUpdateGeneration(&hTIM1) != HAL_OK)
+  {
+    return NULL;
+  }
+  /* ### TIM1 GPIO Configuration ########################### */
+  /* GPIO Clocks activation */
+  HAL_RCC_GPIOA_EnableClock();
+
+  hal_gpio_config_t  gpio_config;
+
+  /**
+    [GPIO Pin] ------> [Signal Name] ------> [Labels]
+
+       PA8     ------>   TIM1_CH1   ------>  INC_ENC_1
+       PA9     ------>   TIM1_CH2   ------>  INC_ENC_2
+    **/
+  gpio_config.mode        = HAL_GPIO_MODE_ALTERNATE;
+  gpio_config.output_type = HAL_GPIO_OUTPUT_PUSHPULL;
+  gpio_config.pull        = HAL_GPIO_PULL_NO;
+  gpio_config.speed       = HAL_GPIO_SPEED_FREQ_LOW;
+  gpio_config.alternate   = HAL_GPIO_AF_1;
+  HAL_GPIO_Init(HAL_GPIOA, INC_ENC_1_PIN | INC_ENC_2_PIN, &gpio_config);
+
   /* Enable Timer update interrupt */
   HAL_CORTEX_NVIC_SetPriority(TIM1_UPD_IRQn, HAL_CORTEX_NVIC_PREEMP_PRIORITY_0, HAL_CORTEX_NVIC_SUB_PRIORITY_0);
   HAL_CORTEX_NVIC_EnableIRQ(TIM1_UPD_IRQn);
@@ -55,7 +138,9 @@ void mx_tim1_deinit(void)
 
   HAL_RCC_TIM1_Reset();
 
-  /* No GPIO de-initialization required for TIM1 */
+  /* De-initialize all GPIOA pins associated with TIM1 */
+  HAL_GPIO_DeInit(HAL_GPIOA, INC_ENC_1_PIN | INC_ENC_2_PIN);
+
   /* Disable Timer update interrupt */
   HAL_CORTEX_NVIC_DisableIRQ(TIM1_UPD_IRQn);
 }
