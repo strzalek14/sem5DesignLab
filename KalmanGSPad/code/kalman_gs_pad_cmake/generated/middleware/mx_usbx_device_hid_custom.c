@@ -48,14 +48,13 @@ UCHAR usbd_custom_hid_report_descriptor[] =
     0xC0,          //     EndCollection()
     0x05, 0x09,    //     UsagePage(Button[0x0009])
     0x19, 0x01,    //     UsageIdMin(Button 1[0x0001])
-    0x29, 0x05,    //     UsageIdMax(Button 5[0x0005])
+    0x29, 0x08,    //     UsageIdMax(Button 8[0x0008])
     0x25, 0x01,    //     LogicalMaximum(1)
-    0x95, 0x05,    //     ReportCount(5)
+    0x95, 0x08,    //     ReportCount(8)
     0x75, 0x01,    //     ReportSize(1)
     0x81, 0x02,    //     Input(Data, Variable, Absolute, NoWrap, Linear, PreferredState, NoNullPosition, BitField)
     0x95, 0x01,    //     ReportCount(1)
-    0x75, 0x06,    //     ReportSize(6)
-    0x81, 0x03,    //     Input(Constant, Variable, Absolute, NoWrap, Linear, PreferredState, NoNullPosition, BitField)
+
     0xC0,          // EndCollection()
 };
 /* Private function prototypes -----------------------------------------------*/
