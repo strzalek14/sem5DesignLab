@@ -41,13 +41,13 @@ extern "C" {
 #define USBD_CCID_CLASS_ACTIVATED               0U
 #define USBD_MTP_CLASS_ACTIVATED                0U
 #define USBD_VENDOR_ID                          1155
-#define USBD_PRODUCT_ID                         22288
+#define USBD_PRODUCT_ID                         1401
 #define USBD_LANG_ID_STRING                     1033
-#define USBD_MANUFACTURER_STRING                "AGHSpaceSystems"
+#define USBD_MANUFACTURER_STRING                "AGH Space Systems"
 #define USBD_PRODUCT_STRING                     "KALMAN_GS_PAD"
-#define USBD_SERIAL_NUMBER_STRING               "000000000001"
+#define USBD_SERIAL_NUMBER_STRING               "1"
 #define USBD_MAX_POWER                          50
-#define USBD_FRAMEWORK_MAX_LENGTH               200U
+#define USBD_FRAMEWORK_MAX_LENGTH               256U
 /* Endpoint IN for HID_CUSTOM */
 #define USBD_HID_CUSTOM_EPIN_ADDR               0x81U
 #define USBD_HID_CUSTOM_EPIN_TYPE               UX_INTERRUPT_ENDPOINT

@@ -69,10 +69,14 @@ system_status_t mx_gpio_default_init(void)
     return SYSTEM_PERIPHERAL_ERROR;
   }
 
+  /*
+    GPIO pin labels :
+    PB10  ---------> ONOFF_NOINPUT
+    */
   /* Configure PB10 GPIO pin in input mode */
   gpio_config.mode            = HAL_GPIO_MODE_INPUT;
   gpio_config.pull            = HAL_GPIO_PULL_NO;
-  if (HAL_GPIO_Init(HAL_GPIOB, HAL_GPIO_PIN_10, &gpio_config) != HAL_OK)
+  if (HAL_GPIO_Init(ONOFF_NOINPUT_PORT, ONOFF_NOINPUT_PIN, &gpio_config) != HAL_OK)
   {
     return SYSTEM_PERIPHERAL_ERROR;
   }
@@ -121,7 +125,7 @@ system_status_t mx_gpio_default_deinit(void)
   HAL_GPIO_DeInit(LED_PORT, LED_PIN);
 
   /* De-initialize pins of GPIOB port */
-  HAL_GPIO_DeInit(HAL_GPIOB, INC_BUTTON_PIN | HAL_GPIO_PIN_10 | BUTTON_0_PIN | BUTTON_1_PIN | BUTTON_2_PIN | BUTTON_3_PIN);
+  HAL_GPIO_DeInit(HAL_GPIOB, INC_BUTTON_PIN | ONOFF_NOINPUT_PIN | BUTTON_0_PIN | BUTTON_1_PIN | BUTTON_2_PIN | BUTTON_3_PIN);
 
   /* De-initialize pins of GPIOC port */
   HAL_GPIO_DeInit(HAL_GPIOC, BUTTON_4_PIN | BUTTON_5_PIN | BUTTON_6_PIN | BUTTON_7_PIN);

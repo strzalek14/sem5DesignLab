@@ -32,8 +32,6 @@ static void error_handler(void);
 volatile int  g_fail = 0;
 volatile UINT g_usbx_status = 0;
 
-
-
 int main(void)
 {
   if (mx_system_init() != SYSTEM_OK)                  { g_fail = 1; error_handler(); }
@@ -57,9 +55,11 @@ int main(void)
   {
     app_usbx_process();                     /* must keep running, so no HAL_Delay in this loop */
 
-    if ((int32_t)(HAL_GetTick() - next_tick) >= 0)
+
+
+  if ((int32_t)(HAL_GetTick() - next_tick) >= 0)
     {
-      next_tick = HAL_GetTick() + 5;
+      next_tick = HAL_GetTick() + 5; //hid report sent every 5 ms
       step++;
 
       gamepad_report_t now = {0};
@@ -67,17 +67,15 @@ int main(void)
       now.report_id = 1;
 
       /* TEST PATTERN: delete once the real inputs exist */
-      now.x       = (int8_t)((int32_t)(step % 255U) - 127);          /* sweeps -127..127 */
-      now.rx      = (uint8_t)(((step / 20U) % 21U) * 5U);            /* steps 0..100     */
-      now.buttons = (step & 0x40U) ? (1u << 4) : 0u;                 /* button 5 blinks  */
+      //now.x       = (int8_t)((int32_t)(step % 255U) - 127);          /* sweeps -127..127 */
+      //now.rx      = (uint8_t)(((step / 20U) % 21U) * 5U);            /* steps 0..100     */
+      now.buttons = read_buttons_raw();
+                 
 
-      /* REAL INPUTS, later:
-      now.x       = (int8_t)gamepad_map(adc_axis0, 120, 3980, -127, 127);
-      now.y       = (int8_t)-gamepad_map(adc_axis3, 120, 3980, -127, 127);
-      now.z       = (int8_t)gamepad_map(adc_axis2, 120, 3980, -127, 127);
-      now.rx      = (uint8_t)(gamepad_map(adc_wheels, 0, 4095, 0, 20) * 5);
-      now.buttons = (sideways_pressed ? (1u << 4) : 0u) | (inplace_pressed ? (1u << 5) : 0u);
-      */
+      volatile UINT g_send_status;   /* file scope */
+
+      g_send_status = gamepad_send(&now);
+      if (g_send_status == UX_SUCCESS) { last_report = now; }
 
       if (memcmp(&now, &last_report, sizeof(now)) != 0)
       {
@@ -87,6 +85,8 @@ int main(void)
     
   }
 }
+
+
 
 static void error_handler(void)
 {

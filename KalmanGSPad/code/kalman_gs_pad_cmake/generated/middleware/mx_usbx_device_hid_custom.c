@@ -17,6 +17,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "mx_usbx_device_hid_custom.h"
+#include "ux_api.h"
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
@@ -25,37 +26,41 @@ UX_SLAVE_CLASS_HID *g_hid_instance = UX_NULL;
 
 UCHAR usbd_custom_hid_report_descriptor[] =
 {
-    0x05, 0x01,    // UsagePage(Generic Desktop[0x0001])
-    0x09, 0x05,    // UsageId(Gamepad[0x0005])
-    0xA1, 0x01,    // Collection(Application)
-    0x85, 0x01,    //     ReportId(1)
-    0x09, 0x01,    //     UsageId(Pointer[0x0001])
-    0xA1, 0x00,    //     Collection(Physical)
-    0x09, 0x30,    //         UsageId(X[0x0030])
-    0x09, 0x31,    //         UsageId(Y[0x0031])
-    0x09, 0x32,    //         UsageId(Z[0x0032])
-    0x15, 0x81,    //         LogicalMinimum(-127)
-    0x25, 0x7F,    //         LogicalMaximum(127)
-    0x95, 0x03,    //         ReportCount(3)
-    0x75, 0x08,    //         ReportSize(8)
-    0x81, 0x02,    //         Input(Data, Variable, Absolute, NoWrap, Linear, PreferredState, NoNullPosition, BitField)
-    0x09, 0x33,    //         UsageId(Rx[0x0033])
-    0x09, 0x34,    //         UsageId(Ry[0x0034])
-    0x09, 0x35,    //         UsageId(Rz[0x0035])
-    0x15, 0x00,    //         LogicalMinimum(0)
-    0x75, 0x07,    //         ReportSize(7)
-    0x81, 0x02,    //         Input(Data, Variable, Absolute, NoWrap, Linear, PreferredState, NoNullPosition, BitField)
-    0xC0,          //     EndCollection()
-    0x05, 0x09,    //     UsagePage(Button[0x0009])
-    0x19, 0x01,    //     UsageIdMin(Button 1[0x0001])
-    0x29, 0x08,    //     UsageIdMax(Button 8[0x0008])
-    0x25, 0x01,    //     LogicalMaximum(1)
-    0x95, 0x08,    //     ReportCount(8)
-    0x75, 0x01,    //     ReportSize(1)
-    0x81, 0x02,    //     Input(Data, Variable, Absolute, NoWrap, Linear, PreferredState, NoNullPosition, BitField)
-    0x95, 0x01,    //     ReportCount(1)
-
-    0xC0,          // EndCollection()
+    0x05, 0x01,        // Usage Page (Generic Desktop)
+    0x09, 0x05,        // Usage (Game Pad)
+    0xA1, 0x01,        // Collection (Application)
+    0x85, 0x01,        //   Report ID (1)
+    0x09, 0x01,        //   Usage (Pointer)
+    0xA1, 0x00,        //   Collection (Physical)
+    0x09, 0x30,        //     Usage (X)
+    0x09, 0x31,        //     Usage (Y)
+    0x09, 0x32,        //     Usage (Z)
+    0x15, 0x81,        //     Logical Minimum (-127)
+    0x25, 0x7F,        //     Logical Maximum (127)
+    0x75, 0x08,        //     Report Size (8)
+    0x95, 0x03,        //     Report Count (3)
+    0x81, 0x02,        //     Input (Data, Var, Abs)
+    0x09, 0x33,        //     Usage (Rx)
+    0x09, 0x34,        //     Usage (Ry)
+    0x09, 0x35,        //     Usage (Rz)
+    0x15, 0x00,        //     Logical Minimum (0)
+    0x25, 0x7F,        //     Logical Maximum (127)
+    0x75, 0x07,        //     Report Size (7)
+    0x95, 0x03,        //     Report Count (3)
+    0x81, 0x02,        //     Input (Data, Var, Abs)
+    0xC0,              //   End Collection
+    0x05, 0x09,        //   Usage Page (Button)
+    0x19, 0x01,        //   Usage Minimum (Button 1)
+    0x29, 0x08,        //   Usage Maximum (Button 8)
+    0x15, 0x00,        //   Logical Minimum (0)
+    0x25, 0x01,        //   Logical Maximum (1)
+    0x75, 0x01,        //   Report Size (1)
+    0x95, 0x08,        //   Report Count (8)
+    0x81, 0x02,        //   Input (Data, Var, Abs)
+    0x75, 0x03,        //   Report Size (3)
+    0x95, 0x01,        //   Report Count (1)
+    0x81, 0x03,        //   Input (Const, Var, Abs)   <- the 3 padding bits
+    0xC0               // End Collection
 };
 /* Private function prototypes -----------------------------------------------*/
 

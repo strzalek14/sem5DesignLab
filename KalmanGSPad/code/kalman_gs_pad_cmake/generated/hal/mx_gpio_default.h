@@ -44,6 +44,10 @@ extern "C" {
 #define INC_BUTTON_PORT                                 HAL_GPIOB
 #define INC_BUTTON_PIN                                  HAL_GPIO_PIN_4
 
+/* Primary aliases for GPIO PB10 pin */
+#define ONOFF_NOINPUT_PORT                              HAL_GPIOB
+#define ONOFF_NOINPUT_PIN                               HAL_GPIO_PIN_10
+
 /* Primary aliases for GPIO PB12 pin */
 #define BUTTON_0_PORT                                   HAL_GPIOB
 #define BUTTON_0_PIN                                    HAL_GPIO_PIN_12

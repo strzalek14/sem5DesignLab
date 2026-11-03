@@ -24,6 +24,7 @@
 #include "mx_usbx_app.h"
 #include <string.h>
 #include "gamepad.h"
+#include "buttons.h"
 
 #ifdef __cplusplus
 extern "C" {
