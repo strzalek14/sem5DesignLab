@@ -16,6 +16,7 @@
   */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "analog.h"
 
 /* Private typedef -----------------------------------------------------------*/
 
@@ -32,9 +33,13 @@ static void error_handler(void);
 volatile int  g_fail = 0;
 volatile UINT g_usbx_status = 0;
 
+uint16_t raw[AN_COUNT];
+
 int main(void)
 {
   if (mx_system_init() != SYSTEM_OK)                  { g_fail = 1; error_handler(); }
+
+  analog_init();
 
   hal_pcd_handle_t *pcd = mx_usb_drd_fs_device_init();
   if (pcd == NULL)                                    { g_fail = 2; error_handler(); }
@@ -49,7 +54,6 @@ int main(void)
 
   gamepad_report_t last_report = {0};
   uint32_t next_tick = 0;
-  uint32_t step = 0;
 
   while (1)
   {
@@ -60,16 +64,23 @@ int main(void)
   if ((int32_t)(HAL_GetTick() - next_tick) >= 0)
     {
       next_tick = HAL_GetTick() + 5; //hid report sent every 5 ms
-      step++;
 
       gamepad_report_t now = {0};
 
       now.report_id = 1;
 
+      
+      analog_read_all(raw);
+
       /* TEST PATTERN: delete once the real inputs exist */
-      //now.x       = (int8_t)((int32_t)(step % 255U) - 127);          /* sweeps -127..127 */
-      //now.rx      = (uint8_t)(((step / 20U) % 21U) * 5U);            /* steps 0..100     */
-      now.buttons = read_buttons_raw();
+      now.x = (int8_t)gamepad_map(raw[AN_G1_X], 120 ,3980 ,-127, 127);
+      now.y = (int8_t)gamepad_map(raw[AN_G1_Y], 120 ,3980 ,-127, 127);
+      now.z = (int8_t)gamepad_map(raw[AN_G2_X], 120 ,3980 ,-127, 127);
+      now.rx = (int8_t)gamepad_map(raw[AN_G2_Y], 120 ,3980 ,-127, 127);
+      now.ry = (int8_t)gamepad_map(raw[AN_POT1], 120 ,3980 ,-127, 127);
+      now.rz = (int8_t)gamepad_map(raw[AN_POT2], 120 ,3980 ,-127, 127);
+      
+      now.buttons = buttons_debounced();
                  
 
       volatile UINT g_send_status;   /* file scope */

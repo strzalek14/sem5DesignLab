@@ -337,16 +337,18 @@
       <description>STMicroelectronics HAL Common Init</description>
       <require condition="HAL Generated code"/>
       <require Cclass="Device" Cgroup="STM32 HAL" Csub="GPIO"/>
-      <require Cclass="Device" Cgroup="STM32 LL" Csub="SBS"/>
+      <require Cclass="Device" Cgroup="STM32 HAL" Csub="SBS"/>
     </condition>
     <condition id="HAL CORE GPIO DMA Init">
       <description>STMicroelectronics HAL CORE, GPIO and DMA Init dependencies</description>
       <require condition="CMSIS Core"/>
       <require Cclass="Device" Cgroup="STM32 HAL" Csub="GPIO"/>
+      <require Cclass="Device" Cgroup="STM32 HAL" Csub="DMA"/>
     </condition>
     <condition id="HAL CORE DMA Init">
       <description>STMicroelectronics HAL CORE and DMA Init dependencies</description>
       <require condition="CMSIS Core"/>
+      <require Cclass="Device" Cgroup="STM32 HAL" Csub="DMA"/>
     </condition>
     <condition id="HAL CORE Init and CRC">
       <description>STMicroelectronics HAL CRC Init dependencies</description>
@@ -383,7 +385,8 @@
       <description>STMicroelectronics HAL ADC Init dependencies</description>
       <require condition="HAL CORE GPIO DMA Init"/>
       <require condition="HAL System Init"/>
-      <require Cclass="Device" Cgroup="STM32 LL" Csub="ADC"/>
+      <require Cclass="Device" Cgroup="STM32 HAL" Csub="ADC"/>
+      <require Cclass="Device" Cgroup="STM32 HAL" Csub="SBS"/>
     </condition>
     <condition id="HAL CORE GPIO Init and COMP">
       <description>STMicroelectronics HAL COMP Init dependencies</description>
@@ -478,7 +481,7 @@
     <condition id="HAL CORE Init and SBS">
       <description>STMicroelectronics HAL SBS Init dependencies</description>
       <require condition="CMSIS Core"/>
-      <require Cclass="Device" Cgroup="STM32 LL" Csub="SBS"/>
+      <require Cclass="Device" Cgroup="STM32 HAL" Csub="SBS"/>
     </condition>
     <condition id="HAL CORE Init and RAMCFG">
       <description>STMicroelectronics HAL RAMCFG Init dependencies</description>
@@ -555,6 +558,13 @@
     </condition>
   </conditions>
   <components>
+    <component generator="stm32c5xx_hal_mx2codegen" Cclass="Device" Cgroup="STM32CubeMX2 Config" Csub="ADC"   Cversion="2.1.0" condition="HAL CORE GPIO DMA Init and ADC">
+      <description>TO BE DEFINED</description>
+      <files>
+        <file category="source" name="mx_adc1.c" />
+        <file category="header" name="mx_adc1.h" />
+      </files>
+    </component>
     <component generator="stm32c5xx_hal_mx2codegen" Cclass="Device" Cgroup="STM32CubeMX2 Config" Csub="CORE"   Cversion="2.1.0" condition="HAL Generated code">
       <description>TO BE DEFINED</description>
       <files>

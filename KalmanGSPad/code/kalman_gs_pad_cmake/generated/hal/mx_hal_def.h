@@ -27,6 +27,7 @@ extern "C" {
 /* Includes ------------------------------------------------------------------*/
 #include "mx_def.h"
 #include "stm32_hal.h"
+#include "mx_adc1.h"
 #include "mx_cortex_mpu.h"
 #include "mx_cortex_nvic.h"
 #include "mx_gpio_default.h"
@@ -38,9 +39,21 @@ extern "C" {
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 
+  /* *************************************************************
+    ADC1 / LPDMA1_CH0: No software label has been defined for this peripheral instance
+      in the STM32CubeMX2 configuration panel.
+      As a result, no aliases are generated for Channel instance
+    ************************************************************* */
+
 /* Exported macros -----------------------------------------------------------*/
 
 /* ########### Aliases to initialization functions ########### */
+
+  /* *************************************************************
+    ADC1: No software label has been defined for this peripheral instance
+      in the STM32CubeMX2 configuration panel.
+      As a result, no aliases are generated for mx_adc1_init
+    ************************************************************* */
 
   /* *************************************************************
     Cortex_MPU: No software label has been defined for this peripheral instance
@@ -89,6 +102,12 @@ extern "C" {
 /* ########### Aliases to De-Initialization functions ########### */
 
   /* *************************************************************
+    ADC1: No software label has been defined for this peripheral instance
+      in the STM32CubeMX2 configuration panel.
+      As a result, no aliases are generated for mx_adc1_deinit
+    ************************************************************* */
+
+  /* *************************************************************
     Cortex_MPU: No software label has been defined for this peripheral instance
       in the STM32CubeMX2 configuration panel.
       As a result, no aliases are generated for mx_cortex_mpu_deinit
@@ -127,6 +146,12 @@ extern "C" {
 /* ########################################################### */
 
 /* ########### Aliases to get HAL handle functions ########### */
+
+  /* *************************************************************
+    ADC1: No software label has been defined for this peripheral instance
+      in the STM32CubeMX2 configuration panel.
+      As a result, no aliases are generated for mx_adc1_gethandle
+    ************************************************************* */
 
   /* *************************************************************
     gpio_default / EXTI10: No EXTI software label has been defined for this peripheral instance

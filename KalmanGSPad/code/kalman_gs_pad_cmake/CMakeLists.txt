@@ -10,20 +10,24 @@ include(cmake/${TOOLCHAIN_FILE})
 
 project(kalman_gs_pad)
 add_executable(kalman_gs_pad)
+enable_language(C CXX ASM)
 include(cmake/files.cmake)
 include(cmake/flags.cmake)
 include(cmake/components.cmake)
 
 # Stubs to be able to add compiler flag overrides, e.g. -Os
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
-  gamepad.c
-  buttons.c
+  src/analog.c
+  src/buttons.c
+  src/gamepad.c
+  src/encoder.c
   # Add additional source files here
 )
 
 target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC
   parts/led
   part_drivers/gpio
+  inc
   # Add additional include directories here
 )
 

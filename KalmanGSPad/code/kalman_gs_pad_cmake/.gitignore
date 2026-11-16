@@ -1,3 +1,8 @@
 build
 mx.scratch
 !.settings
+*.c_bckp
+*.h_bckp
+*.txt_bckp
+*.cmake_bckp
+*_bckp

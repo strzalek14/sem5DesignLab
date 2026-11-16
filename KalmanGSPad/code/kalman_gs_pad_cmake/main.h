@@ -25,6 +25,7 @@
 #include <string.h>
 #include "gamepad.h"
 #include "buttons.h"
+#include "analog.h"
 
 #ifdef __cplusplus
 extern "C" {

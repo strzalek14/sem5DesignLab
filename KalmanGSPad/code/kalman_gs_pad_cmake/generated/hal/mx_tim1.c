@@ -65,7 +65,7 @@ hal_tim_handle_t *mx_tim1_init(void)
 
   ic_config.source    = HAL_TIM_INPUT_TIM1_TI1_GPIO;
   ic_config.polarity  = HAL_TIM_IC_RISING;
-  ic_config.filter    = HAL_TIM_FDIV1;
+  ic_config.filter    = HAL_TIM_FDIV32_N8;
   if (HAL_TIM_IC_SetConfigChannel(&hTIM1, HAL_TIM_CHANNEL_1, &ic_config) != HAL_OK)
   {
     return NULL;
@@ -82,7 +82,7 @@ hal_tim_handle_t *mx_tim1_init(void)
 
   ic_config.source    = HAL_TIM_INPUT_TIM1_TI2_GPIO;
   ic_config.polarity  = HAL_TIM_IC_RISING;
-  ic_config.filter    = HAL_TIM_FDIV1;
+  ic_config.filter    = HAL_TIM_FDIV32_N8;
   if (HAL_TIM_IC_SetConfigChannel(&hTIM1, HAL_TIM_CHANNEL_2, &ic_config) != HAL_OK)
   {
     return NULL;
@@ -118,7 +118,7 @@ hal_tim_handle_t *mx_tim1_init(void)
     **/
   gpio_config.mode        = HAL_GPIO_MODE_ALTERNATE;
   gpio_config.output_type = HAL_GPIO_OUTPUT_PUSHPULL;
-  gpio_config.pull        = HAL_GPIO_PULL_NO;
+  gpio_config.pull        = HAL_GPIO_PULL_UP;
   gpio_config.speed       = HAL_GPIO_SPEED_FREQ_LOW;
   gpio_config.alternate   = HAL_GPIO_AF_1;
   HAL_GPIO_Init(HAL_GPIOA, INC_ENC_1_PIN | INC_ENC_2_PIN, &gpio_config);

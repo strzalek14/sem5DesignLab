@@ -114,6 +114,12 @@ system_status_t mx_system_init(void)
     * See Cube code generator options: Generate and call Initialization function
     */
 
+  /** ADC1 */
+  if (mx_adc1_init() == NULL)
+  {
+    return SYSTEM_PERIPHERAL_ERROR;
+  }
+
   if (post_system_init_hook() != SYSTEM_OK)
   {
     return SYSTEM_POSTSYSTEM_ERROR;

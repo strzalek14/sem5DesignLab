@@ -100,12 +100,12 @@ extern "C" {
   * @{
   */
 /* ########################## HAL_ADC Config #################################### */
-#define USE_HAL_ADC_MODULE                      0U
+#define USE_HAL_ADC_MODULE                      1U
 #define USE_HAL_ADC_CLK_ENABLE_MODEL            HAL_CLK_ENABLE_NO
 #define USE_HAL_ADC_REGISTER_CALLBACKS          0U
 #define USE_HAL_ADC_USER_DATA                   0U
 #define USE_HAL_ADC_GET_LAST_ERRORS             0U
-#define USE_HAL_ADC_DMA                         0U
+#define USE_HAL_ADC_DMA                         1U
 /**
   * @}
   */
@@ -238,7 +238,7 @@ extern "C" {
 #define USE_HAL_DMA_CLK_ENABLE_MODEL            HAL_CLK_ENABLE_NO
 #define USE_HAL_DMA_USER_DATA                   0U
 #define USE_HAL_DMA_GET_LAST_ERRORS             0U
-#define USE_HAL_DMA_LINKEDLIST                  0U
+#define USE_HAL_DMA_LINKEDLIST                  1U
 /**
   * @}
   */
@@ -538,7 +538,7 @@ extern "C" {
   * @{
   */
 /* ########################## HAL_SBS Config #################################### */
-#define USE_HAL_SBS_MODULE                      0U
+#define USE_HAL_SBS_MODULE                      1U
 /**
   * @}
   */
