@@ -40,7 +40,6 @@ void analog_read_all(uint16_t raw[AN_COUNT]){
     for (int i = 0; i < AN_COUNT; i++)
     {
         uint32_t sample = (adc_buffer[i] & 0x0FFFU);
-        /* Filtr dolnoprzepustowy (waga 15/16 starej wartosci + 1/16 nowej) */
         filtered[i] = ((filtered[i] * 15U) + (sample << 4)) >> 4;
         raw[i] = (uint16_t)(filtered[i] >> 4);
     }
