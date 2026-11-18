@@ -7,10 +7,10 @@
 typedef struct __attribute__((packed))
 {
   uint8_t report_id;
-  int8_t   x, y, z;       /* -127..127 */
-  uint8_t  rx, ry, rz;    /* -127..127 */
-  uint8_t slider;         /* -127..127 */
-  uint8_t buttons;    /* 8 przycisków (bity 0..7) */
+  int8_t   x, y, z;      
+  uint8_t  rx, ry, rz;    
+  uint8_t slider;         
+  uint8_t buttons;    
 } gamepad_report_t;
 
 _Static_assert(sizeof(gamepad_report_t) == 9, "must match the descriptor");

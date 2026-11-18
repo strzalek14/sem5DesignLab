@@ -2,7 +2,7 @@
 #include "mx_tim1.h"
 
 #ifndef ENCODER_COUNTS_PER_CLICK
-#define ENCODER_COUNTS_PER_CLICK  4   /* zmień na 2 lub 1 zależnie od trybu enkodera w TIM1 */
+#define ENCODER_COUNTS_PER_CLICK  4   
 #endif
 
 static hal_tim_handle_t *htim;
@@ -16,7 +16,7 @@ static uint16_t read_counter(void)
 
 int encoder_init(void)
 {
-  htim = mx_tim1_init();     /* pomiń tę linię, jeśli mx_system_init() wywołuje już mx_tim1_init() */
+  htim = mx_tim1_init();     
   if (htim == NULL) { return -1; }
 
   if (HAL_TIM_IC_StartChannel(htim, HAL_TIM_CHANNEL_1) != HAL_OK) { return -2; }
@@ -31,7 +31,7 @@ int encoder_init(void)
 int16_t encoder_take_delta(void)
 {
   uint16_t now  = read_counter();
-  int16_t  diff = (int16_t)(now - last_cnt);   /* bezpieczne przy zawinięciu 0 <-> 65535 */
+  int16_t  diff = (int16_t)(now - last_cnt);  
   last_cnt = now;
 
   enc_remainder += diff;
@@ -46,10 +46,10 @@ static pulse_t pulse_cw, pulse_ccw;
 static void pulse_add(pulse_t *p, uint16_t n)
 {
   uint16_t total = (uint16_t)p->pending + n;
-  p->pending = (total > 20U) ? 20U : (uint8_t)total;      /* cap the backlog */
+  p->pending = (total > 20U) ? 20U : (uint8_t)total;      
 }
 
-static uint8_t pulse_step(pulse_t *p)        /* 1 while the button should be down */
+static uint8_t pulse_step(pulse_t *p)        
 {
   if ((p->phase == 0) && (p->pending > 0)) { p->pending--; p->phase = 1; }
   uint8_t pressed = (p->phase >= 1) && (p->phase <= 3);
@@ -57,7 +57,7 @@ static uint8_t pulse_step(pulse_t *p)        /* 1 while the button should be dow
   return pressed;
 }
 
-uint16_t encoder_button_bits(void)           /* call once per 5 ms tick */
+uint16_t encoder_button_bits(void)           
 {
   int16_t clicks = encoder_take_delta();
   if (clicks > 0)      { pulse_add(&pulse_cw,  (uint16_t)clicks); }

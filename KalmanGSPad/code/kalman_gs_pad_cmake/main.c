@@ -45,7 +45,7 @@ int main(void)
   g_usbx_status = app_usbx_init();
   if (g_usbx_status != UX_SUCCESS)                    { g_fail = 3; error_handler(); }
 
-  app_usbx_process();   /* first call runs ux_dcd_stm32_initialize() */
+  app_usbx_process();   
 
   if (HAL_PCD_GetState(pcd) != HAL_PCD_STATE_ACTIVE)  { g_fail = 4; error_handler(); }
   if (HAL_PCD_DeviceConnect(pcd) != HAL_OK)           { g_fail = 5; error_handler(); }
@@ -60,7 +60,7 @@ int main(void)
 
   while (1)
   {
-    app_usbx_process();                     /* must keep running, so no HAL_Delay in this loop */
+    app_usbx_process();                     
 
 
 
@@ -75,7 +75,7 @@ int main(void)
       
       analog_read_all(raw);
 
-      /* TEST PATTERN: delete once the real inputs exist */
+      
       now.x      = (int8_t)gamepad_map(raw[AN_G1_X], 120, 3980, -127, 127);
       now.y      = (int8_t)gamepad_map(raw[AN_G1_Y], 120, 3980, -127, 127);
       now.z      = (int8_t)gamepad_map(raw[AN_G2_X], 120, 3980, -127, 127);
@@ -86,7 +86,7 @@ int main(void)
       now.buttons = buttons_debounced(); //| encoder_button_bits();
                  
 
-      volatile UINT g_send_status;   /* file scope */
+      volatile UINT g_send_status;   
 
       g_send_status = gamepad_send(&now);
       if (g_send_status == UX_SUCCESS) { last_report = now; }
