@@ -39,6 +39,14 @@ extern "C" {
 #define POT_1_CHANNEL HAL_ADC_CHANNEL_9
 #define POT_2_CHANNEL HAL_ADC_CHANNEL_10
 
+/** Primary aliases for ADC1_IN7 pin */
+#define GIMBAL_2_Y_PORT                       HAL_GPIOA
+#define GIMBAL_2_Y_PIN                        HAL_GPIO_PIN_7
+
+/** Primary aliases for ADC1_IN6 pin */
+#define GIMBAL_2_X_PORT                       HAL_GPIOA
+#define GIMBAL_2_X_PIN                        HAL_GPIO_PIN_6
+
 /** Primary aliases for ADC1_IN0 pin */
 #define GIMBAL_1_X_PORT                       HAL_GPIOA
 #define GIMBAL_1_X_PIN                        HAL_GPIO_PIN_0
@@ -46,14 +54,6 @@ extern "C" {
 /** Primary aliases for ADC1_IN1 pin */
 #define GIMBAL_1_Y_PORT                       HAL_GPIOA
 #define GIMBAL_1_Y_PIN                        HAL_GPIO_PIN_1
-
-/** Primary aliases for ADC1_IN6 pin */
-#define GIMBAL_2_X_PORT                       HAL_GPIOB
-#define GIMBAL_2_X_PIN                        HAL_GPIO_PIN_0
-
-/** Primary aliases for ADC1_IN7 pin */
-#define GIMBAL_2_Y_PORT                       HAL_GPIOB
-#define GIMBAL_2_Y_PIN                        HAL_GPIO_PIN_1
 
 /** Primary aliases for ADC1_IN8 pin */
 #define POT_0_PORT                            HAL_GPIOC

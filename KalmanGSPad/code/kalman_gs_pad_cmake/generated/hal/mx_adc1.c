@@ -39,8 +39,6 @@ hal_adc_handle_t *mx_adc1_init(void)
 
   HAL_RCC_ADC12_EnableClock();
 
-  HAL_RCC_SBS_EnableClock();
-
   if (HAL_RCC_ADCDAC_SetKernelClkSource(HAL_RCC_ADCDAC_CLK_SRC_PSIS) != HAL_OK)
   {
     return NULL;
@@ -116,8 +114,6 @@ hal_adc_handle_t *mx_adc1_init(void)
   /* GPIO Clocks activation */
   HAL_RCC_GPIOA_EnableClock();
 
-  HAL_RCC_GPIOB_EnableClock();
-
   HAL_RCC_GPIOC_EnableClock();
 
   hal_gpio_config_t  gpio_config;
@@ -125,22 +121,14 @@ hal_adc_handle_t *mx_adc1_init(void)
   /**
     [GPIO Pin] ------> [Signal Name] ------> [Labels]
 
+       PA7     ------>   ADC1_IN7   ------>  GIMBAL_2_Y
+       PA6     ------>   ADC1_IN6   ------>  GIMBAL_2_X
        PA0     ------>   ADC1_IN0   ------>  GIMBAL_1_X
        PA1     ------>   ADC1_IN1   ------>  GIMBAL_1_Y
     **/
   gpio_config.mode        = HAL_GPIO_MODE_ANALOG;
   gpio_config.pull        = HAL_GPIO_PULL_NO;
-  HAL_GPIO_Init(HAL_GPIOA, GIMBAL_1_X_PIN | GIMBAL_1_Y_PIN, &gpio_config);
-
-  /**
-    [GPIO Pin] ------> [Signal Name] ------> [Labels]
-
-       PB0     ------>   ADC1_IN6   ------>  GIMBAL_2_X
-       PB1     ------>   ADC1_IN7   ------>  GIMBAL_2_Y
-    **/
-  gpio_config.mode        = HAL_GPIO_MODE_ANALOG;
-  gpio_config.pull        = HAL_GPIO_PULL_NO;
-  HAL_GPIO_Init(HAL_GPIOB, GIMBAL_2_X_PIN | GIMBAL_2_Y_PIN, &gpio_config);
+  HAL_GPIO_Init(HAL_GPIOA, GIMBAL_2_Y_PIN | GIMBAL_2_X_PIN | GIMBAL_1_X_PIN | GIMBAL_1_Y_PIN, &gpio_config);
 
   /**
     [GPIO Pin] ------> [Signal Name] ------> [Labels]
@@ -195,10 +183,7 @@ void mx_adc1_deinit(void)
   HAL_RCC_ADC12_Reset();
 
   /* De-initialize all GPIOA pins associated with ADC1 */
-  HAL_GPIO_DeInit(HAL_GPIOA, GIMBAL_1_X_PIN | GIMBAL_1_Y_PIN);
-
-  /* De-initialize all GPIOB pins associated with ADC1 */
-  HAL_GPIO_DeInit(HAL_GPIOB, GIMBAL_2_X_PIN | GIMBAL_2_Y_PIN);
+  HAL_GPIO_DeInit(HAL_GPIOA, GIMBAL_1_X_PIN | GIMBAL_1_Y_PIN | GIMBAL_2_X_PIN | GIMBAL_2_Y_PIN);
 
   /* De-initialize all GPIOC pins associated with ADC1 */
   HAL_GPIO_DeInit(HAL_GPIOC, POT_0_PIN | POT_1_PIN | POT_2_PIN);

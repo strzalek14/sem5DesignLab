@@ -26,6 +26,7 @@
 #include "gamepad.h"
 #include "buttons.h"
 #include "analog.h"
+//#include "encoder.h"
 
 #ifdef __cplusplus
 extern "C" {

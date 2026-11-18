@@ -43,10 +43,11 @@ UCHAR usbd_custom_hid_report_descriptor[] =
     0x09, 0x33,        //     Usage (Rx)
     0x09, 0x34,        //     Usage (Ry)
     0x09, 0x35,        //     Usage (Rz)
+    0x09, 0x36,        //     Usage (Slider)
     0x15, 0x00,        //     Logical Minimum (0)
-    0x25, 0x7F,        //     Logical Maximum (127)
-    0x75, 0x07,        //     Report Size (7)
-    0x95, 0x03,        //     Report Count (3)
+    0x26, 0xFF, 0x00,  //     Logical Maximum (255)
+    0x75, 0x08,        //     Report Size (8)
+    0x95, 0x04,        //     Report Count (4)
     0x81, 0x02,        //     Input (Data, Var, Abs)
     0xC0,              //   End Collection
     0x05, 0x09,        //   Usage Page (Button)
@@ -57,9 +58,6 @@ UCHAR usbd_custom_hid_report_descriptor[] =
     0x75, 0x01,        //   Report Size (1)
     0x95, 0x08,        //   Report Count (8)
     0x81, 0x02,        //   Input (Data, Var, Abs)
-    0x75, 0x03,        //   Report Size (3)
-    0x95, 0x01,        //   Report Count (1)
-    0x81, 0x03,        //   Input (Const, Var, Abs)   <- the 3 padding bits
     0xC0               // End Collection
 };
 /* Private function prototypes -----------------------------------------------*/

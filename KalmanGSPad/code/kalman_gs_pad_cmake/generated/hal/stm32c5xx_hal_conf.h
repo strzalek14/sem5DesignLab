@@ -538,7 +538,7 @@ extern "C" {
   * @{
   */
 /* ########################## HAL_SBS Config #################################### */
-#define USE_HAL_SBS_MODULE                      1U
+#define USE_HAL_SBS_MODULE                      0U
 /**
   * @}
   */

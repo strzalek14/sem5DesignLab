@@ -4,6 +4,8 @@
 
 int encoder_init(void);
 
-static uint16_t read_counter(void);
+int16_t  encoder_take_delta(void);
+
+uint16_t encoder_button_bits(void);
 
 #endif

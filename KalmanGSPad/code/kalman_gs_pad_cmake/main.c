@@ -16,7 +16,6 @@
   */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "analog.h"
 
 /* Private typedef -----------------------------------------------------------*/
 
@@ -39,8 +38,7 @@ int main(void)
 {
   if (mx_system_init() != SYSTEM_OK)                  { g_fail = 1; error_handler(); }
 
-  analog_init();
-
+  
   hal_pcd_handle_t *pcd = mx_usb_drd_fs_device_init();
   if (pcd == NULL)                                    { g_fail = 2; error_handler(); }
 
@@ -51,7 +49,12 @@ int main(void)
 
   if (HAL_PCD_GetState(pcd) != HAL_PCD_STATE_ACTIVE)  { g_fail = 4; error_handler(); }
   if (HAL_PCD_DeviceConnect(pcd) != HAL_OK)           { g_fail = 5; error_handler(); }
+  
+  analog_init();
 
+ // encoder_init();
+ // if (encoder_init() != 0)                             { g_fail = 6; error_handler(); }
+ 
   gamepad_report_t last_report = {0};
   uint32_t next_tick = 0;
 
@@ -73,14 +76,14 @@ int main(void)
       analog_read_all(raw);
 
       /* TEST PATTERN: delete once the real inputs exist */
-      now.x = (int8_t)gamepad_map(raw[AN_G1_X], 120 ,3980 ,-127, 127);
-      now.y = (int8_t)gamepad_map(raw[AN_G1_Y], 120 ,3980 ,-127, 127);
-      now.z = (int8_t)gamepad_map(raw[AN_G2_X], 120 ,3980 ,-127, 127);
-      now.rx = (int8_t)gamepad_map(raw[AN_G2_Y], 120 ,3980 ,-127, 127);
-      now.ry = (int8_t)gamepad_map(raw[AN_POT1], 120 ,3980 ,-127, 127);
-      now.rz = (int8_t)gamepad_map(raw[AN_POT2], 120 ,3980 ,-127, 127);
-      
-      now.buttons = buttons_debounced();
+      now.x      = (int8_t)gamepad_map(raw[AN_G1_X], 120, 3980, -127, 127);
+      now.y      = (int8_t)gamepad_map(raw[AN_G1_Y], 120, 3980, -127, 127);
+      now.z      = (int8_t)gamepad_map(raw[AN_G2_X], 120, 3980, -127, 127);
+      now.rx     = (uint8_t)gamepad_map(raw[AN_G2_Y], 120, 3980, 0, 255);
+      now.ry     = (uint8_t)gamepad_map(raw[AN_POT0], 0, 4095, 0, 255);
+      now.rz     = (uint8_t)gamepad_map(raw[AN_POT1], 0, 4095, 0, 255);
+      now.slider = (uint8_t)gamepad_map(raw[AN_POT2], 0, 4095, 0, 255);
+      now.buttons = buttons_debounced(); //| encoder_button_bits();
                  
 
       volatile UINT g_send_status;   /* file scope */
@@ -88,10 +91,6 @@ int main(void)
       g_send_status = gamepad_send(&now);
       if (g_send_status == UX_SUCCESS) { last_report = now; }
 
-      if (memcmp(&now, &last_report, sizeof(now)) != 0)
-      {
-        if (gamepad_send(&now) == UX_SUCCESS) { last_report = now; }
-      }
     }
     
   }

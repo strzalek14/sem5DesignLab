@@ -337,7 +337,7 @@
       <description>STMicroelectronics HAL Common Init</description>
       <require condition="HAL Generated code"/>
       <require Cclass="Device" Cgroup="STM32 HAL" Csub="GPIO"/>
-      <require Cclass="Device" Cgroup="STM32 HAL" Csub="SBS"/>
+      <require Cclass="Device" Cgroup="STM32 LL" Csub="SBS"/>
     </condition>
     <condition id="HAL CORE GPIO DMA Init">
       <description>STMicroelectronics HAL CORE, GPIO and DMA Init dependencies</description>
@@ -386,7 +386,6 @@
       <require condition="HAL CORE GPIO DMA Init"/>
       <require condition="HAL System Init"/>
       <require Cclass="Device" Cgroup="STM32 HAL" Csub="ADC"/>
-      <require Cclass="Device" Cgroup="STM32 HAL" Csub="SBS"/>
     </condition>
     <condition id="HAL CORE GPIO Init and COMP">
       <description>STMicroelectronics HAL COMP Init dependencies</description>
@@ -481,7 +480,7 @@
     <condition id="HAL CORE Init and SBS">
       <description>STMicroelectronics HAL SBS Init dependencies</description>
       <require condition="CMSIS Core"/>
-      <require Cclass="Device" Cgroup="STM32 HAL" Csub="SBS"/>
+      <require Cclass="Device" Cgroup="STM32 LL" Csub="SBS"/>
     </condition>
     <condition id="HAL CORE Init and RAMCFG">
       <description>STMicroelectronics HAL RAMCFG Init dependencies</description>
